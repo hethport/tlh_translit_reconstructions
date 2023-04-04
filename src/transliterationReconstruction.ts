@@ -64,7 +64,7 @@ function reconstructTransliterationFromNode(node: XmlNode, isFirstChild = false)
   case 'aGr':
     return '_' + innerContent;
   case 'sGr':
-    return (isFirstChild ? '' : '-') + innerContent;
+    return /*(isFirstChild ? '' : '-') +*/ innerContent;
   case 'd':
     return '°' + innerContent + '°';
   case 'num':
@@ -76,7 +76,6 @@ function reconstructTransliterationFromNode(node: XmlNode, isFirstChild = false)
   case 'subscr':
     return `|${node.attributes.c}`;
   default:
-    console.info(JSON.stringify(node));
-    return 'XXX';
+    throw new Error(`tagName ${node.tagName} is not yet supported!`);
   }
 }
